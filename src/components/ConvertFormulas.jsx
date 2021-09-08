@@ -3,15 +3,25 @@ import Api from '../constants/Api';
 import axios from "axios";
 import { useState } from "react";
 
-const ConvertValue = ({zlotyValue, value, setValue}) => {
-// let [value, setValue] = useState(0);
+
+const finalResult = (zl, other) => {
+return zl * other;
+}
+
+const ConvertValue = ({zlotyValue, value, setValue, index, nameOfCurrency }) => {
+
      axios.get(Api.baseUrl)
-       .then(({data}) => {setValue({value: data[0].rates[2].mid})})
+       .then(({data}) => {setValue({value: data[0].rates[index].mid})
+        })
        .catch((error) => console.log(error));
-       let result = value.value * zlotyValue;
-       console.log(result);
+       console.log(value.value);
+       let result = finalResult(value.value, zlotyValue);
+       console.log(nameOfCurrency);
        return (
-       <span> {result} </span>
+
+       <li> <h6> {nameOfCurrency} </h6>
+       {result}
+       </li>
        );
    }
 

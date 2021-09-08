@@ -1,37 +1,28 @@
-import CurrencyElement from './CurrencyElement'
 import {useState} from "react";
 import Api from "../constants/Api";
 import axios from "axios";
 import ConvertValue from './ConvertFormulas';
-
-// pobieranie z API i ustawianie stanu obecnej wartosci waluty
-
-const ZlotyInput = ({zlotyValue, setZlotyValue}) => {
-//     let [zlotyValue, setValue] = useState(0);
-
-      function handleInputChange(event) {
-        setZlotyValue(event.target.value);
-    }
-
-    return (
-      <fieldset>
-        <legend>Enter value in Polish zloty</legend>
-        <input value = {zlotyValue} onChange={ handleInputChange} />
-
-      </fieldset>
-    )}
-
-
+import ZlotyInput from './ZlotyInput';
 
 const CurrencyBoard = () => {
-    let [value, setValue] = useState(0);
+    let [dolar, setDolar] = useState(0);
+    let [euro, setEuro] = useState(0);
+    let [frank, setFrank]= useState(0);
+    let [forint, setForint]  = useState(0);
+    let [norwegianCrown, setNorwegianCrown] = useState(0);
     let [zlotyValue, setZlotyValue] = useState(0);
 
-    return ( <ul>
+    return ( <div className="board">
+    <ul>
     <ZlotyInput zlotyValue={zlotyValue} setZlotyValue={setZlotyValue}>
     </ZlotyInput>
-        <ConvertValue zlotyValue={zlotyValue} value={value} setValue={setValue}> </ConvertValue>
+        <ConvertValue nameOfCurrency = {'dolar'} zlotyValue={zlotyValue} value={dolar} setValue={setDolar} index={1} > </ConvertValue>
+        <ConvertValue nameOfCurrency = {'euro'} zlotyValue={zlotyValue} value={euro} setValue={setEuro} index={7} > </ConvertValue>
+        <ConvertValue nameOfCurrency = {'frank'} zlotyValue={zlotyValue} value={frank} setValue={setFrank} index={9} > </ConvertValue>
+        <ConvertValue nameOfCurrency = {'forint'} zlotyValue={zlotyValue} value={forint} setValue={setForint} index={8} > </ConvertValue>
+        <ConvertValue nameOfCurrency = {'norwegian crown'} zlotyValue={zlotyValue} value={norwegianCrown} setValue={setNorwegianCrown} index={16} > </ConvertValue>
         </ul>
+        </div>
     )
 }
 
