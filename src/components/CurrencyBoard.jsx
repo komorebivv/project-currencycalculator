@@ -1,6 +1,4 @@
 import {useState} from "react";
-import Api from "../constants/Api";
-import axios from "axios";
 import ConvertValue from './ConvertFormulas';
 import ZlotyInput from './ZlotyInput';
 

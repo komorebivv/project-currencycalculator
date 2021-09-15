@@ -1,11 +1,9 @@
 import React from "react";
 import Api from '../constants/Api';
 import axios from "axios";
-import { useState } from "react";
 
-
-const finalResult = (zl, other) => {
-return zl * other;
+const finalResult = (zl, otherCurrency) => {
+  return zl * otherCurrency;
 }
 
 const ConvertValue = ({zlotyValue, value, setValue, index, nameOfCurrency }) => {
@@ -14,13 +12,12 @@ const ConvertValue = ({zlotyValue, value, setValue, index, nameOfCurrency }) => 
        .then(({data}) => {setValue({value: data[0].rates[index].mid})
         })
        .catch((error) => console.log(error));
-       console.log(value.value);
-       let result = finalResult(value.value, zlotyValue);
-       console.log(nameOfCurrency);
+
+       let result = finalResult(value.value, zlotyValue).toFixed(2);
        return (
 
        <li> <h6> {nameOfCurrency} </h6>
-       {result}
+       {isNaN(result)  ? 'Please type a number' : result}
        </li>
        );
    }
